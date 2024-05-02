@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "d0f90cc0-459e-4f86-a50c-fcf312454a2a",
+		"name": "Microservices Activity 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33559404"
+	},
+	"item": [
+		{
+			"name": "Get All users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Blocked Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8419/user/bloqueados",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"bloqueados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Gabriel1\",\r\n    \"password\": \"apple\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Gabriel1\",\r\n    \"password\":\"banana\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Gabriel1\",\r\n    \"currentPassword\":\"banana\",\r\n    \"newPassword\":\"apple\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user/trocasenha",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"trocasenha"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
