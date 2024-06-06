@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +21,7 @@ public class User {
 
   // Existing code
 
-  @PostMapping
+  @PostMapping()
   public ResponseEntity<String> createUser(@RequestBody UserBean user) throws DupedIdException {
 
     if (dao.count() == 0) {
@@ -147,4 +149,25 @@ public class User {
     dao.save(userExists);
     return new ResponseEntity<String>("Senha alterada", HttpStatus.OK);
   }
+
+  @PostMapping("/unblock/{username}")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<String> unblock(@PathVariable String username) {
+      if (username == null) {
+          return new ResponseEntity<String>("Usuário não pode ser nulo", HttpStatus.BAD_REQUEST);
+      }
+      UserBean user = dao.findByUsername(username);
+      System.out.println(user);
+      if (user == null) {
+          return new ResponseEntity<String>("Usuário não existe", HttpStatus.NOT_FOUND);
+      }
+      if (!user.isBlocked()) {
+          return new ResponseEntity<String>("Usuário não está bloqueado", HttpStatus.BAD_REQUEST);
+      }
+      user.setTotalFails(0);
+      user.setBlocked(false);
+      dao.save(user);
+      return new ResponseEntity<String>("Usuário desbloqueado", HttpStatus.OK);
+  }
+  
 }

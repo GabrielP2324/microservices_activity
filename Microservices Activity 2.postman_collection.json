@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "17610506-577d-43d5-b7fb-fb8131f0088c",
+		"name": "Microservices Activity 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35150260"
+	},
+	"item": [
+		{
+			"name": "Get All users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Blocked Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8419/user/bloqueados",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"bloqueados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Gabriel1\",\r\n    \"password\": \"apple\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Gabriel1\",\r\n    \"password\":\"banana\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Gabriel1\",\r\n    \"currentPassword\":\"banana\",\r\n    \"newPassword\":\"apple\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8419/user/trocasenha",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"trocasenha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login KeyCloak",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8419/user/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unblock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJUdUlQSEhTYzRVN2kxYng3bkd0QWFFczRsUUpHejJ5djlyYzV4b0ZlclQ0In0.eyJleHAiOjE3MTc2MzQ2OTIsImlhdCI6MTcxNzYzNDM5MiwianRpIjoiNjYzNTk3YzMtNzlhMi00ZjA4LWEwZmQtNmM1Y2EzZGVhODNlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9NaWNyb1NlcnZpY2VzIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImJkNjJjNGRiLWUxMTYtNGE4My1iOTMxLTljNDgzMDg4NWZmMyIsInR5cCI6IkJlYXJlciIsImF6cCI6Im1pY3Jvc2VydmljZXMtdGFzayIsInNlc3Npb25fc3RhdGUiOiI2MTYxMDMxNy04MTk0LTQ2MTctOTM1OS1hN2FhZTM1MTk3YmUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1pY3Jvc2VydmljZXMiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiQURNSU4iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI2MTYxMDMxNy04MTk0LTQ2MTctOTM1OS1hN2FhZTM1MTk3YmUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJnIHAiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiIsImdpdmVuX25hbWUiOiJnIiwiZmFtaWx5X25hbWUiOiJwIiwiZW1haWwiOiJnYWJlcGVpeG90bzIzQGdtYWlsLmNvbSJ9.BrZ7qjqtPuUL7mqW0EKAJZeYXyKKQRso4SPUKOtE3wUTzcDLI-BJ1vM_EaoOgSKPEMBmUSkKRunxA9T8FBbDfrWudVRsoSd5O2l5YziahWIZs2Z-kayQ1ZL7uxoNUkE3o2XS9VaewhsEmuik5fApaERpuIAv17DIqY5fH91k3kJEXCukooVU9wyDxMVyUVGjvtFYdTdMG6nQxiw8gSYhQ7pHH1QdKGfu5bSwn5tfCK_oRWFFutPwiNKaM0pgHltqWQ_VBKHG-_NFirZFOKqWexHrjq1oGiDa9A31VaxWkj0-aL9C-ZXtOh3bvPcfIP5mjNPkcMYeWIDDAKAAIfAcpQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8419/user/unblock/Gabriel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8419",
+					"path": [
+						"user",
+						"unblock",
+						"Gabriel"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
