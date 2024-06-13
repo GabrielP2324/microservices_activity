@@ -19,6 +19,8 @@ public class User {
   @Autowired
   private UserDAO dao;
 
+  @Autowired
+  private FailedLoginKafkaProducer kafkaProducer;
   // Existing code
 
   @PostMapping()
@@ -92,6 +94,7 @@ public class User {
       }
 
       dao.save(userExists);
+      kafkaProducer.sendMessage(userExists.getUsername());
       return new ResponseEntity<String>("Senha incorreta",
           HttpStatus.UNAUTHORIZED);
     }
